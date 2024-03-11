@@ -10,12 +10,10 @@ const db = new sqlite3.Database(':memory:');
 app.use(cors());
 app.use(bodyParser.json());
 
-// Criar tabela de planos de férias
 db.serialize(() => {
   db.run('CREATE TABLE holiday_plans (id INTEGER PRIMARY KEY, title TEXT, description TEXT, date TEXT, location TEXT, participants TEXT)');
 });
 
-// Obter todos os planos de férias
 app.get('/api/plans', (req, res) => {
   db.all('SELECT * FROM holiday_plans', (err, rows) => {
     if (err) {
@@ -26,7 +24,6 @@ app.get('/api/plans', (req, res) => {
   });
 });
 
-// Adicionar um novo plano de férias
 app.post('/api/plans', (req, res) => {
   const { title, description, date, location, participants } = req.body;
   db.run('INSERT INTO holiday_plans (title, description, date, location, participants) VALUES (?, ?, ?, ?, ?)', [title, description, date, location, participants], function(err) {
@@ -38,7 +35,6 @@ app.post('/api/plans', (req, res) => {
   });
 });
 
-// Atualizar um plano de férias
 app.put('/api/plans/:id', (req, res) => {
   const id = req.params.id;
   const { title, description, date, location, participants } = req.body;
@@ -51,7 +47,6 @@ app.put('/api/plans/:id', (req, res) => {
   });
 });
 
-// Excluir um plano de férias
 app.delete('/api/plans/:id', (req, res) => {
   const id = req.params.id;
   db.run('DELETE FROM holiday_plans WHERE id = ?', id, function(err) {

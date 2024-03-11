@@ -57,7 +57,7 @@ function Dashboard() {
       try {
         const response = await axios.post('http://localhost:5000/api/plans', newPlan);
         const addedPlan = response.data;
-        setPlans([...plans, addedPlan]); // Adiciona o novo plano ao estado atual dos planos
+        setPlans([...plans, addedPlan]);
         toggleForm();
       } catch (error) {
         console.error('Error adding plan:', error);

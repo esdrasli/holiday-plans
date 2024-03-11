@@ -1,10 +1,10 @@
 jest.mock('@react-pdf/renderer', () => ({
-  PDFViewer: () => null, // Mock PDFViewer component
-  Document: () => null, // Mock Document component
-  Page: () => null, // Mock Page component
-  Text: () => null, // Mock Text component
-  View: () => null, // Mock View component
-  StyleSheet: { create: () => ({}) }, // Mock StyleSheet.create method
+  PDFViewer: () => null, 
+  Document: () => null, 
+  Page: () => null,
+  Text: () => null, 
+  View: () => null, 
+  StyleSheet: { create: () => ({}) },
 }));
 
 import React from 'react';
