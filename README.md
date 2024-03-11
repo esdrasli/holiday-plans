@@ -1,70 +1,152 @@
-# Getting Started with Create React App
+# Documentation for the Holiday Planner Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+The Holiday Planner project is a web application designed to help users plan their holidays effectively. It allows users to create, view, edit, and delete holiday plans, as well as generate PDF documents of their plans.
 
-## Available Scripts
+## Libraries Used
+### Backend:
 
-In the project directory, you can run:
+**Express.js:** A web application framework for Node.js, used for building the backend REST API.
 
-### `npm start`
+**Cors:** Middleware for enabling Cross-Origin Resource Sharing (CORS) in the Express application.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Body-parser:** Middleware for parsing incoming request bodies in the Express application.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**sqlite3:** A Node.js package for interacting with SQLite databases.
 
-### `npm test`
+### Frontend:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**React.js:** A JavaScript library for building user interfaces.
 
-### `npm run build`
+**Styled-components:** A CSS-in-JS library for styling React components.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Axios:** A promise-based HTTP client for making API requests from the browser.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**@react-pdf/renderer:** A library for generating PDF documents in React applications.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Jest:** A JavaScript testing framework for writing unit tests.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Components
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Backend Components:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Express Server:** Handles HTTP requests and responses, serves as the backend for the application.
+**SQLite Database:** Stores holiday plans data.
+**API Routes:** Define endpoints for CRUD operations on holiday plans.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### Frontend Components:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Dashboard:** The main component displaying holiday plans, allowing users to add, edit, delete, and generate PDFs of plans.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**HolidayPlanCard:** Represents a single holiday plan, displaying its details and providing options to edit, delete, or generate a PDF.
 
-### Code Splitting
+**HolidayPlanForm:** A form for adding or editing holiday plans.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**PDFGenerator:** Component for generating PDF documents of holiday plans.
 
-### Analyzing the Bundle Size
+**HolidayPlanList:** Component to display a list of holiday plans.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+### API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**GET** /api/plans: Retrieves all holiday plans from the database.
 
-### Advanced Configuration
+**POST** /api/plans: Adds a new holiday plan to the database.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**PUT** /api/plans/:id: Updates an existing holiday plan in the database.
 
-### Deployment
+**DELETE** /api/plans/:id: Deletes a holiday plan from the database.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+### Tests
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**HolidayPlanCard Test:** Tests rendering of holiday plan details and buttons for editing, deleting, and generating PDFs.
+
+**HolidayPlanList Test:** Tests rendering of a list of holiday plans.
+
+**PDFGenerator Test:** Tests rendering of PDF document with holiday plans.
+
+### Frontend Structure
+
+***DashboardContainer:*** Container component for the entire dashboard, with styling and layout.
+
+***GridContainer:*** Grid layout for displaying holiday plans.
+
+***AddPlanButton:*** Button for adding a new holiday plan.
+
+***HolidayPlanCard:*** Component for displaying individual holiday plans with options for editing, deleting, and generating PDFs.
+
+## Running the Backend, Frontend, and Tests
+
+This guide will walk you through the steps to run the backend, frontend, and tests for the Holiday Planner project.
+
+## Backend
+### Prerequisites
+***Node.js*** installed on your machine. You can download and install it from the official Node.js website.
+
+### Steps to Run the Backend
+***Install Dependencies:***
+Open a terminal in the project folder and run the following command to install all necessary dependencies:
+```
+cd holiday-plans-api
+npm install
+```
+
+Start the Server:
+After installing dependencies, execute the following command to start the server:
+
+```
+node index.js
+```
+
+This will start the Express server on the specified port (by default, port 5000).
+
+Verify the Server is Running:
+After starting the server, open a web browser and access http://localhost:5000/api/plans. You should receive a response with holiday plan data, or a message indicating there are no holiday plans if the database is empty.
+
+### Testing the Routes:
+You can test the server routes using tools like Postman or cURL by making HTTP requests to http://localhost:5000/api/plans to get all plans, http://localhost:5000/api/plans/:id to get a specific plan, and so on.
+
+### Stopping the Server:
+To stop the server, press Ctrl + C in the terminal where the server is running.
+
+## Frontend
+### Steps to Run the Frontend
+***Install Dependencies:***
+Open a new terminal window/tab in the project folder and run the following command to install frontend dependencies:
+
+```
+cd holiday-plans
+npm install
+```
+
+***Start the Frontend Server:***
+After installing dependencies, execute the following command to start the frontend server:
+
+```
+npm start
+```
+
+This will start the React development server, and your default web browser will open the application at http://localhost:3000.
+
+## Tests
+### Steps to Run Tests
+
+## Run Tests:
+To run frontend tests, open a terminal in the frontend folder and execute the following command:
+
+```
+npx react-scripts test
+```
+
+This will run all the tests for the frontend components using Jest.
+
+## Conclusion
+
+The Holiday Planner project provides a comprehensive solution for managing holiday plans, with a user-friendly interface for creating, editing, and viewing plans, as well as generating PDF documents for easy sharing and printing. With a well-structured backend API and robust frontend components, it offers a seamless experience for users to organize their vacations efficiently.
+
+
+
+
